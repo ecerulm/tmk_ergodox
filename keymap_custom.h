@@ -9,20 +9,22 @@
 // RBRC: Right BRacKet ]}
 // LCTL : Left ConTroL
 // RCTL: Right ConTroL
-// TRNS measn transparent and means that it’s the same as the lower
-// layer
+// TRNS measn transparent and means that it’s the same as the lower layer
 // GRV: Grave Accent and Tilde `~
-// SLSH> SLaSH /?
+// SLSH SLaSH /?
 // SCLN Colon and Semicolon ;:
 // RSFT: Right ShiFT
-// MINS  MINuS -_
+// MINS  MINuS - and underscore _
 // COMM: CoMMa ,<
 // DOT: .>
 // NO: nothing
 // LALT: Left alt
 // QUOT: Quote and single quote
-// RALT: Right alt
-//
+// RALT: Right alt , AltGr
+
+
+// see tmk_keyboard/tmk_core/doc/keymap.md
+
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // layer 0 : default
         // left hand
@@ -36,11 +38,11 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  BSPC,DEL, END,
         // right hand
              FN3, 6,   7,   8,   9,   0,   MINS,
-             NO  ,Y,   U,   I,   O,   P,   BSLS,
+             TAB, Y,   U,   I,   O,   P,   BSLS,
                   H,   J,   K,   L,SCLN,   QUOT,
              RBRC,N,   M,COMM, DOT,SLSH,   RSFT,
-                    LEFT,DOWN,UP,RGHT,RGUI,
-        RALT,RCTL,
+                    LEFT,DOWN,UP,RGHT,RALT,
+        FN0 ,RCTL,
         PGUP,
         PGDN,ENT, SPC
     ),
@@ -110,25 +112,21 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-/* id for user defined functions */
-enum function_id {
-    TEENSY_KEY,
-};
 
 /*
  * Fn action definition
  */
 static const uint16_t PROGMEM fn_actions[] = {
-    ACTION_FUNCTION(TEENSY_KEY),                    // FN0 - Teensy key
-    ACTION_LAYER_MOMENTARY(1),                      // FN1 - switch to Layer1
-    ACTION_LAYER_SET(2, ON_PRESS),                  // FN2 - set Layer2
-    ACTION_LAYER_TOGGLE(3),                         // FN3 - toggle Layer3 aka Numpad layer
-    ACTION_LAYER_SET(0, ON_PRESS),                  // FN4 - set Layer0
+    ACTION_FUNCTION(KC_FN0),                           // FN0 - Teensy key
+    /* ACTION_LAYER_MOMENTARY(1),                      // FN1 - switch to Layer1 */
+    /* ACTION_LAYER_SET(2, ON_PRESS),                  // FN2 - set Layer2 */
+    /* ACTION_LAYER_TOGGLE(3),                         // FN3 - toggle Layer3 aka Numpad layer */
+    /* ACTION_LAYER_SET(0, ON_PRESS),                  // FN4 - set Layer0 */
 };
 
 void action_function(keyrecord_t *event, uint8_t id, uint8_t opt)
 {
-    if (id == TEENSY_KEY) {
+    if (id == KC_FN0) { // TEENSY_KEY
         clear_keyboard();
         print("\n\nJump to bootloader... ");
         _delay_ms(250);
