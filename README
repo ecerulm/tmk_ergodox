@@ -1,0 +1,13 @@
+Initial version of the files come from https://github.com/cub-uanic/tmk_keyboard
+
+Installation
+============
+
+    git clone https://github.com/tmk/tmk_keyboard.git
+    cd tmk_keyboard/keyboard
+    git clone https://github.com/ecerulm/tmk_ergodox ergodox
+    cd ergodox
+    make -f Makefile.lufa # default layout
+    make -f Makefile.lufa custom # layout defined in keymap_custom.h
+
+
