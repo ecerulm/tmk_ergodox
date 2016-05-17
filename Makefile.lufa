@@ -139,5 +139,5 @@ cub: all
 
 # target specific variables: http://www.gnu.org/software/make/manual/html_node/Target_002dspecific.html
 custom: OPT_DEFS += -DKEYMAP_CUSTOM
-custom: all
+custom: keymap_custom.h all
 
